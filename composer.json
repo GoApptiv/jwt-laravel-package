@@ -1,0 +1,11 @@
+{
+    "name": "goapptiv/jwt",
+    "description": "This Package is for the JWT Token Verfication",
+    "authors": [
+        {
+            "name": "Sagar Vaghela",
+            "email": "sagar.vaghela@goapptiv.com"
+        }
+    ],
+    "require": {}
+}
