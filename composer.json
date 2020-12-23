@@ -7,5 +7,10 @@
             "email": "sagar.vaghela@goapptiv.com"
         }
     ],
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "GoApptiv\\JWT": "src/"
+        }
+    }
 }

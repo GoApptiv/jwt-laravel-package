@@ -23,7 +23,7 @@ Add the following code in the composer to install this package into your Laravel
     ]
 ```
 
-Add the Token and Encryption method in your .env file.
+Add the Token and Encryption method Key in your .env file.
 
 ```.env
 TOKEN_SECRET_KEY=
@@ -32,8 +32,18 @@ TOKEN_ENCRYPTION_METHOD=
 
 ## Usage
 
+Decrypting a Token
+
 ```php
 use GoApptiv\JWT\JWT;
 
-JWT::decrypt($token)
+JWT::decrypt($token);
+```
+
+Encrypting Data
+
+```php
+use GoApptiv\JWT\JWT;
+
+JWT::encrypt($data);
 ```
