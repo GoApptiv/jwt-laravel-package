@@ -2,18 +2,23 @@
 
 namespace GoApptiv\JWT;
 
+use Carbon\Carbon;
 use Exception;
+use Illuminate\Support\Collection;
 
 class JWT {
 
     /**
      * Generate token
      *
+     * @param Collection $data
+     * @param Carbon $expiryTime
+     *
      * @return mixed
      */
-    public static function encrypt($data) {
+    public static function encrypt(Collection $data, Carbon $expiryTime = null) {
         $header = self::encodeHeader();
-        $payload = self::encodePayload(self::generatePayload($data));
+        $payload = self::encodePayload(self::generatePayload($data, $expiryTime));
         return implode(".", [
             $header,
             $payload,
@@ -39,15 +44,26 @@ class JWT {
         }
 
         $decoded = self::decodePayload($parts[1]);
-        if ($decoded['time'] < time()) {
+
+        if (array_key_exists('token_expiry_timestamp', $decoded) && Carbon::now()->gt(Carbon::createFromTimestamp($decoded['token_expiry_timestamp']))) {
             throw new Exception("Token Expired");
         }
 
         return $decoded;
     }
 
-    private static function generatePayload($payload) {
-        $payload['time'] = time() + (2 * 24 * 60 * 60);
+    /**
+     *
+     * Generates Payload
+     *
+     *
+     */
+    private static function generatePayload(Collection $payload, Carbon $expiryTime = null) {
+
+        if ($expiryTime !== null) {
+            $payload['token_expiry_timestamp'] = $expiryTime->timestamp;
+        }
+
         return $payload;
     }
 
