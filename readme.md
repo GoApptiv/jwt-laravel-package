@@ -9,7 +9,7 @@ Add the following code in the composer to install this package into your Laravel
 ```composer
 "require": {
         ...
-        "goapptiv/jwt": "dev-master"
+        "goapptiv/jwt": "^1.0.0"
 
     }
 ```
@@ -18,7 +18,7 @@ Add the following code in the composer to install this package into your Laravel
  "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/sagar-goapptiv/jwt"
+            "url": "https://github.com/GoApptiv/jwt-laravel-package"
         }
     ]
 ```
