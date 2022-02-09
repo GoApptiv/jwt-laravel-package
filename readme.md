@@ -9,7 +9,7 @@ Add the following code in the composer to install this package into your Laravel
 ```composer
 "require": {
         ...
-        "goapptiv/jwt": "^1.0"
+        "goapptiv/jwt": "^2.0"
 
     }
 ```
