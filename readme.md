@@ -1,6 +1,6 @@
 # GoApptiv/JWT
 
-JWT is used to verify and generate JWT Token.
+JWT Package is used to verify and generate JWT Token.
 
 ## Installation
 
@@ -23,11 +23,10 @@ Add the following code in the composer to install this package into your Laravel
     ]
 ```
 
-Add the Token and Encryption method Key in your .env file.
+Add the Token Key in your .env file.
 
 ```.env
 TOKEN_SECRET_KEY=
-TOKEN_ENCRYPTION_METHOD=
 ```
 
 ## Usage
