@@ -80,6 +80,7 @@ class JWT
         return self::base64url_encode(json_encode([
             "alg" => "HS256",
             "type" => "JWT",
+            "kid" => env("APPLICATION_KEY"),
         ]));
     }
 
