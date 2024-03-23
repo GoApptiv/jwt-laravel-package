@@ -8,7 +8,6 @@ use Illuminate\Support\Collection;
 
 class JWT
 {
-
     /**
      * Generate token
      *
@@ -102,5 +101,14 @@ class JWT
     private static function base64url_encode($data)
     {
         return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+    }
+
+    /**
+     * Get header
+     */
+    public static function getHeader(string $token)
+    {
+        $parts = explode(".", $token);
+        return json_decode(base64_decode($parts[0]), true);
     }
 }
