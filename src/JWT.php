@@ -34,14 +34,14 @@ class JWT
      * @return mixed
      * @throws Exception
      */
-    public static function decrypt($token)
+    public static function decrypt($token, $secretKey = null)
     {
         $parts = explode(".", $token);
         if (count($parts) != 3) {
             throw new Exception("Invalid Token");
         }
 
-        if (self::base64url_encode(self::generateSignature($parts[0], $parts[1])) !== $parts[2]) {
+        if (self::base64url_encode(self::generateSignature($parts[0], $parts[1], $secretKey)) !== $parts[2]) {
             throw new Exception("Invalid Token");
         }
 
@@ -93,9 +93,10 @@ class JWT
         return json_decode(base64_decode($payload), true);
     }
 
-    private static function generateSignature($header, $payload)
+    private static function generateSignature($header, $payload, $secretKey = null)
     {
-        return hash_hmac('sha256', "$header.$payload", env("TOKEN_SECRET_KEY"), true);
+        $secretKey = $secretKey ?? env("TOKEN_SECRET_KEY");
+        return hash_hmac('sha256', "$header.$payload", $secretKey, true);
     }
 
     private static function base64url_encode($data)
